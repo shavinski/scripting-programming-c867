@@ -8,14 +8,23 @@
 #include <iostream>
 using namespace std;
 
-int apply_all(int *arr1, int size1, int *arr2, int size2) {}
+int *apply_all(int *arr1, int size1, int *arr2, int size2)
 {
-    int *new_arr_ptr {nullptr};
+    int *new_arr_ptr{};
 
+    new_arr_ptr = new int[size1 * size2];
 
+    int position{0};
+    for (int i = 0; i < size1; i++)
+    {
+        for (int j = 0; j < size2; j++)
+        {
+            new_arr_ptr[position] = *(arr1 + i) * *(arr2 + j);
+            position++;
+        }
+    }
 
     return new_arr_ptr;
-
 }
 
 int print(int *arr_ptr, int size)
@@ -43,7 +52,7 @@ int main()
     int *results = apply_all(array1, array1_size, array2, array2_size);
     constexpr size_t results_size{array1_size * array2_size};
 
-    cout << "Result: ";
+    cout << "\nResult: ";
     print(results, results_size);
 
     cout << endl;
