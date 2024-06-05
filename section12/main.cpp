@@ -29,8 +29,11 @@ int *apply_all(int *arr1, int size1, int *arr2, int size2)
 
 int print(int *arr_ptr, int size)
 {
+    // for (size_t i = 0; i < size; i++)
+    //     cout << *arr_ptr++ << " ";
+
     for (size_t i = 0; i < size; i++)
-        cout << *arr_ptr++ << " ";
+        cout << arr_ptr[i] << " ";
 
     return 0;
 }
