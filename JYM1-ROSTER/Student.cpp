@@ -8,7 +8,9 @@ Student::Student(std::string student_id,
                  std::string last_name,
                  std::string email,
                  int age,
-                 int *num_days,
+                 int first_course,
+                 int second_course,
+                 int third_course,
                  DegreeProgram degree_program)
 {
     this->student_id = student_id;
@@ -16,14 +18,9 @@ Student::Student(std::string student_id,
     this->last_name = last_name;
     this->email = email;
     this->age = age;
-
-    // Allocate memory for new array and initialize to 0's, no junk data
-    this->num_days = new int[3]{0};
-    for (size_t i = 0; i < 3; i++)
-    {
-        this->num_days[i] = num_days[i];
-    }
-
+    this->num_days[0] = first_course;
+    this->num_days[1] = second_course;
+    this->num_days[2] = third_course;
     this->degree_program = degree_program;
 }
 
@@ -53,9 +50,27 @@ int Student::get_age() const
     return age;
 }
 
-int *Student::get_num_days() const
+int Student::get_num_days(int position) const
 {
-    return num_days;
+    return num_days[position];
+}
+
+std::string Student::get_degree_program() const
+{
+    if (this->degree_program == SECURITY)
+    {
+        return "Security";
+    }
+    else if (this->degree_program == NETWORK)
+    {
+        return "Network";
+    }
+    else if (this->degree_program == SOFTWARE)
+    {
+        return "Software";
+    }
+
+    return "NONE";
 }
 
 // ------------ Setter Methods ----------------------
@@ -84,12 +99,9 @@ void Student::set_age(int age)
     this->age = age;
 }
 
-void Student::set_num_days(int *num_days)
+void Student::set_num_days(int value, int position)
 {
-    for (size_t i = 0; i < 3; i++)
-    {
-        this->num_days[i] = num_days[i];
-    }
+    num_days[position] = value;
 }
 
 void Student::set_degree_program(DegreeProgram degree_program)
@@ -100,17 +112,11 @@ void Student::set_degree_program(DegreeProgram degree_program)
 // ------------ Additional Methods ----------------------
 void Student::print() const
 {
-    std::cout << student_id << ", ";
-    std::cout << first_name << " ";
-    std::cout << last_name << ", ";
-    std::cout << email << ", ";
-    std::cout << age << ", ";
+    std::cout << student_id << "    ";
+    std::cout << "First Name: " << first_name << "    ";
+    std::cout << "Last Name: " << last_name << "     ";
+    std::cout << "Age: " << age << "    ";
 
-    for (size_t i = 0; i < 3; i++)
-    {
-        std::cout << num_days[i] << " ";
-    }
-
-    std::cout << " ";
-    std::cout << degree_program << std::endl;
+    std::cout << "daysInCourse: {" << num_days[0] << ", " << num_days[1] << ", " << num_days[2] << "}     ";
+    std::cout << "Degree program: " << get_degree_program() << std::endl;
 }
