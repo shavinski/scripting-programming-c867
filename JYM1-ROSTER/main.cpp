@@ -74,16 +74,6 @@ int main()
     for (const std::string student : student_data)
     {
         std::vector<std::string> parsed_student_data = parse(student);
-        // std::cout << student << std::endl;
-        // std::cout << "Student id: " << parsed_student_data.at(0) << std::endl;
-        // std::cout << "Student first name: " << parsed_student_data.at(1) << std::endl;
-        // std::cout << "Student last name: " << parsed_student_data.at(2) << std::endl;
-        // std::cout << "Student email: " << parsed_student_data.at(3) << std::endl;
-        // std::cout << "Student age: " << parsed_student_data.at(4) << std::endl;
-        // std::cout << "Student first course: " << parsed_student_data.at(5) << std::endl;
-        // std::cout << "Student second course: " << parsed_student_data.at(6) << std::endl;
-        // std::cout << "Student third course: " << parsed_student_data.at(7) << std::endl;
-        // std::cout << "Student program: " << parsed_student_data.at(8) << std::endl;
 
         std::string student_id = parsed_student_data.at(0);
         std::string first_name = parsed_student_data.at(1);
@@ -97,6 +87,17 @@ int main()
 
         class_roster.add(student_id, first_name, last_name, email, age, days_course1, days_course2, days_Course3, degree_program);
     }
+
+    class_roster.printAll();
+
+    for (Student *student : class_roster.class_roster_array)
+    {
+        class_roster.printAverageDaysInCourse(student->get_student_id());
+    }
+
+    class_roster.remove("A3");
+    class_roster.printAll();
+    class_roster.remove("A3");
 
     return 0;
 }

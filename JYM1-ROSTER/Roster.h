@@ -7,12 +7,9 @@
 
 class Roster
 {
-private:
-    // All private Roster variables
+public:
     Student *class_roster_array[5]{nullptr};
     int roster_position{0};
-
-public:
     // Constructor all input params
     Roster();
 
