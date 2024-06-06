@@ -116,7 +116,6 @@ void Student::print() const
     std::cout << "First Name: " << first_name << "    ";
     std::cout << "Last Name: " << last_name << "     ";
     std::cout << "Age: " << age << "    ";
-
     std::cout << "daysInCourse: {" << num_days[0] << ", " << num_days[1] << ", " << num_days[2] << "}     ";
     std::cout << "Degree program: " << get_degree_program() << std::endl;
 }
