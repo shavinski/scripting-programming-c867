@@ -36,7 +36,7 @@ public:
     void set_last_name(std::string last_name);
     void set_email(std::string email);
     void set_age(int age);
-    void set_num_days(int num_days);
+    void set_num_days(int* num_days);
     void set_degree_program(DegreeProgram degree_program);
 
     // Print method
