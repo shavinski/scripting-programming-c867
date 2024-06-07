@@ -24,11 +24,6 @@ Student::Student(std::string student_id,
     this->degree_program = degree_program;
 }
 
-// ------------ destructor ----------------------
-Student::~Student()
-{
-}
-
 // ------------ Getter Methods ----------------------
 std::string Student::get_student_id() const
 {
@@ -59,24 +54,6 @@ int Student::get_num_days(int position) const
 {
     return num_days[position];
 }
-
-// std::string Student::get_degree_program() const
-// {
-//     if (this->degree_program == SECURITY)
-//     {
-//         return "Security";
-//     }
-//     else if (this->degree_program == NETWORK)
-//     {
-//         return "Network";
-//     }
-//     else if (this->degree_program == SOFTWARE)
-//     {
-//         return "Software";
-//     }
-
-//     return "NONE";
-// }
 
 DegreeProgram Student::get_degree_program() const
 {

@@ -21,8 +21,6 @@ public:
     Student(std::string student_id, std::string first_name, std::string last_name,
             std::string email, int age, int first_course, int second_course,
             int third_course, DegreeProgram degree_program);
-    // Destructor
-    ~Student();
 
     // Accessor/Getter methods
     std::string get_student_id() const;
@@ -31,7 +29,6 @@ public:
     std::string get_email() const;
     int get_age() const;
     int get_num_days(int position) const;
-    // std::string get_degree_program() const;
     DegreeProgram get_degree_program() const;
 
     // Mutator/Setter methods

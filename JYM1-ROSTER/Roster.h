@@ -10,6 +10,7 @@ class Roster
 public:
     Student *class_roster_array[5]{nullptr};
     int roster_position{0};
+    
     // Constructor all input params
     Roster();
 

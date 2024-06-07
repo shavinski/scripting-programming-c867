@@ -14,10 +14,7 @@ const std::string student_data[] =
      "A4,Erin,Black,Erin.black@comcast.net,22,50,58,40,SECURITY",
      "A5,Jakob,Shavinski,jshavi1@wgu.edu,24,10,20,30,SOFTWARE"};
 
-// While currentChar != ,
-// we will concat onto a variable
-// We will try to convert
-
+// Parse function to get necessary information from strings
 std::vector<std::string> parse(std::string s)
 {
     int string_length = s.length();
@@ -47,6 +44,7 @@ std::vector<std::string> parse(std::string s)
     return parsed_string_result;
 }
 
+// Type conversion for string -> DegreeProgram
 DegreeProgram stringToDegreeType(std::string s)
 {
     if (s == "SECURITY")
@@ -63,14 +61,18 @@ DegreeProgram stringToDegreeType(std::string s)
 
 int main()
 {
-    // Student *studentData[5]{nullptr};
+    std::cout << std::endl;
+    std::cout << "-------------------------------------------------------" << std::endl;
+    std::cout << "Scripting and Programming - Applications - C867" << std::endl;
+    std::cout << "Language used: C++" << std::endl;
+    std::cout << "WGU Student ID: 011881471" << std::endl;
+    std::cout << "Jakob Shavinski" << std::endl;
+    std::cout << "-------------------------------------------------------" << std::endl;
 
-    // Student jakob("A5", "Jakob", "Shavinski", "jshavi1@wgu.edu", 24, 30, 60, 90, SOFTWARE);
-
-    // jakob.print();
-
+    // Instantiate a class_roster object from class Roster
     Roster class_roster;
 
+    // Loop through data and parse the data to create and add students to class_roster array
     for (const std::string student : student_data)
     {
         std::vector<std::string> parsed_student_data = parse(student);
@@ -88,17 +90,37 @@ int main()
         class_roster.add(student_id, first_name, last_name, email, age, days_course1, days_course2, days_Course3, degree_program);
     }
 
+    std::cout << std::endl;
+    std::cout << "Print all: " << std::endl;
     class_roster.printAll();
+    std::cout << std::endl;
 
+    std::cout << "Print invalid emails: " << std::endl;
+    class_roster.printInvalidEmails();
+    std::cout << std::endl;
+
+    std::cout << "Print average days in course: " << std::endl;
     for (Student *student : class_roster.class_roster_array)
     {
         class_roster.printAverageDaysInCourse(student->get_student_id());
     }
+    std::cout << std::endl;
 
+    std::cout << "Print by software degree program: " << std::endl;
     class_roster.printByDegreeProgram(SOFTWARE);
+    std::cout << std::endl;
+
+    std::cout << "We remove student by id: A3 " << std::endl;
     class_roster.remove("A3");
+    std::cout << std::endl;
+
+    std::cout << "Print all after A3 removed: " << std::endl;
     class_roster.printAll();
-    // class_roster.remove("A3");
+    std::cout << std::endl;
+
+    std::cout << "We try to remove student by id: A3, after deletion: " << std::endl;
+    class_roster.remove("A3");
+    std::cout << std::endl;
 
     return 0;
 }

@@ -13,7 +13,8 @@ Roster::~Roster()
 {
     for (int i = 0; i < 5; ++i)
     {
-        delete class_roster_array[i]; // Release dynamically allocated Student objects
+        delete class_roster_array[i];
+        class_roster_array[i] = nullptr;
     }
 }
 
@@ -29,16 +30,28 @@ void Roster::add(std::string student_id, std::string first_name, std::string las
 
 void Roster::remove(std::string student_id)
 {
+    bool student_found = false;
+
     for (size_t i = 0; i < 5; i++)
     {
-        if (class_roster_array[i]->get_student_id() == student_id && class_roster_array[i] != nullptr)
+        // Guard statement deals with nullptrs, will continue through loop if discovered and skip
+        if (class_roster_array[i] == nullptr)
         {
+            continue;
+        }
+
+        if (class_roster_array[i]->get_student_id() == student_id)
+        {
+            student_found = true;
             delete class_roster_array[i];
             class_roster_array[i] = nullptr;
         }
     }
 
-    std::cout << "Student not found: " << student_id << std::endl;
+    if (!student_found)
+    {
+        std::cout << "Student not found: " << student_id << std::endl;
+    }
 }
 
 // Print methods for roster
@@ -66,6 +79,21 @@ void Roster::printAverageDaysInCourse(std::string student_id)
             int sum = first_course_days + second_course_days + third_course_days;
 
             std::cout << "Average days in course:" << sum / 3 << std::endl;
+        }
+    }
+}
+
+void Roster::printInvalidEmails()
+{
+    for (size_t i = 0; i < 5; i++)
+    {
+        std::string student_email = class_roster_array[i]->get_email();
+
+        if (student_email.find(' ') != std::string::npos ||
+            student_email.find("@") == std::string::npos ||
+            student_email.find(".") == std::string::npos)
+        {
+            std::cout << student_email << std::endl;
         }
     }
 }
