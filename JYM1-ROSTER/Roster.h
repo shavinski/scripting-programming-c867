@@ -13,6 +13,9 @@ public:
     // Constructor all input params
     Roster();
 
+    // Destructor
+    ~Roster();
+
     // Add/remove methods for roster
     void add(std::string studentID, std::string firstName, std::string lastName,
              std::string emailAddress, int age, int daysInCourse1, int daysInCourse2,

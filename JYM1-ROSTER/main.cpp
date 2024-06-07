@@ -95,9 +95,10 @@ int main()
         class_roster.printAverageDaysInCourse(student->get_student_id());
     }
 
+    class_roster.printByDegreeProgram(SOFTWARE);
     class_roster.remove("A3");
     class_roster.printAll();
-    class_roster.remove("A3");
+    // class_roster.remove("A3");
 
     return 0;
 }

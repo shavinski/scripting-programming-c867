@@ -8,6 +8,15 @@ Roster::Roster()
 {
 }
 
+// ------------ destructor ----------------------
+Roster::~Roster()
+{
+    for (int i = 0; i < 5; ++i)
+    {
+        delete class_roster_array[i]; // Release dynamically allocated Student objects
+    }
+}
+
 // Add/remove methods for roster
 void Roster::add(std::string student_id, std::string first_name, std::string last_name,
                  std::string email, int age, int days_course1, int days_course2,
@@ -22,11 +31,13 @@ void Roster::remove(std::string student_id)
 {
     for (size_t i = 0; i < 5; i++)
     {
-        if (class_roster_array[i]->get_student_id() == student_id)
+        if (class_roster_array[i]->get_student_id() == student_id && class_roster_array[i] != nullptr)
         {
+            delete class_roster_array[i];
             class_roster_array[i] = nullptr;
         }
     }
+
     std::cout << "Student not found: " << student_id << std::endl;
 }
 
@@ -35,7 +46,10 @@ void Roster::printAll()
 {
     for (size_t i = 0; i < 5; i++)
     {
-        class_roster_array[i]->print();
+        if (class_roster_array[i] != nullptr)
+        {
+            class_roster_array[i]->print();
+        }
     }
 }
 
@@ -52,6 +66,17 @@ void Roster::printAverageDaysInCourse(std::string student_id)
             int sum = first_course_days + second_course_days + third_course_days;
 
             std::cout << "Average days in course:" << sum / 3 << std::endl;
+        }
+    }
+}
+
+void Roster::printByDegreeProgram(DegreeProgram degree_program)
+{
+    for (size_t i = 0; i < 5; i++)
+    {
+        if (class_roster_array[i]->get_degree_program() == degree_program)
+        {
+            class_roster_array[i]->print();
         }
     }
 }

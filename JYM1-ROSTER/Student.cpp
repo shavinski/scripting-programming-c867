@@ -24,6 +24,11 @@ Student::Student(std::string student_id,
     this->degree_program = degree_program;
 }
 
+// ------------ destructor ----------------------
+Student::~Student()
+{
+}
+
 // ------------ Getter Methods ----------------------
 std::string Student::get_student_id() const
 {
@@ -55,22 +60,36 @@ int Student::get_num_days(int position) const
     return num_days[position];
 }
 
-std::string Student::get_degree_program() const
+// std::string Student::get_degree_program() const
+// {
+//     if (this->degree_program == SECURITY)
+//     {
+//         return "Security";
+//     }
+//     else if (this->degree_program == NETWORK)
+//     {
+//         return "Network";
+//     }
+//     else if (this->degree_program == SOFTWARE)
+//     {
+//         return "Software";
+//     }
+
+//     return "NONE";
+// }
+
+DegreeProgram Student::get_degree_program() const
 {
     if (this->degree_program == SECURITY)
     {
-        return "Security";
+        return SECURITY;
     }
     else if (this->degree_program == NETWORK)
     {
-        return "Network";
-    }
-    else if (this->degree_program == SOFTWARE)
-    {
-        return "Software";
+        return NETWORK;
     }
 
-    return "NONE";
+    return SOFTWARE;
 }
 
 // ------------ Setter Methods ----------------------
@@ -109,6 +128,21 @@ void Student::set_degree_program(DegreeProgram degree_program)
     this->degree_program = degree_program;
 }
 
+// Used for switching the enum from display 0 1 or 2 to the actual string it represents
+std::string DegreeProgramToStringType(DegreeProgram degree_program)
+{
+    if (degree_program == SECURITY)
+    {
+        return "Security";
+    }
+    else if (degree_program == NETWORK)
+    {
+        return "Network";
+    }
+
+    return "Software";
+}
+
 // ------------ Additional Methods ----------------------
 void Student::print() const
 {
@@ -117,5 +151,5 @@ void Student::print() const
     std::cout << "Last Name: " << last_name << "     ";
     std::cout << "Age: " << age << "    ";
     std::cout << "daysInCourse: {" << num_days[0] << ", " << num_days[1] << ", " << num_days[2] << "}     ";
-    std::cout << "Degree program: " << get_degree_program() << std::endl;
+    std::cout << "Degree program: " << DegreeProgramToStringType(get_degree_program()) << std::endl;
 }
